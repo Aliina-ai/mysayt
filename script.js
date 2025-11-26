@@ -25,3 +25,26 @@ nftItems.forEach(img => {
     img.style.transform = "rotateY(0deg) rotateX(0deg) scale(1)";
   });
 });
+
+window.addEventListener("load", () => {
+  const intro = document.getElementById("intro-animation");
+  const main = document.getElementById("main-content");
+
+  // Через 3 секунди запускаємо анімацію зменшення
+  setTimeout(() => {
+    intro.style.transform = "scale(0.3)";
+    intro.style.opacity = "0.3";
+    
+    // Після анімації показуємо основний контент
+    setTimeout(() => {
+      main.style.display = "block";
+      intro.style.position = "fixed";  // лишаємо фон
+      intro.style.top = "0";
+      intro.style.left = "0";
+      intro.style.width = "100%";
+      intro.style.height = "100vh";
+      intro.style.zIndex = "0"; // під контентом
+    }, 2000); // час співпадає з CSS transition
+  }, 3000); // час до запуску анімації
+});
+
