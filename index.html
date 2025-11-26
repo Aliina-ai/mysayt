@@ -1,335 +1,130 @@
 <!DOCTYPE html>
 <html lang="uk">
 <head>
-  <meta charset="utf-8" />
-  <meta name="viewport" content="width=device-width,initial-scale=1" />
-  <title>Картинка ШІ — Галерея</title>
+  <meta charset="UTF-8">
+  <title>AI Crypto Project</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
   <style>
-    :root{
-      --bg:#0f1724;
-      --card:#0b1220;
-      --accent:#7c5cff;
-      --muted:#9aa3b2;
-      --glass: rgba(255,255,255,0.04);
-    }
-    *{box-sizing:border-box}
-    body{
-      margin:0;
-      font-family:Inter, system-ui, -apple-system, "Segoe UI", Roboto, "Helvetica Neue", Arial;
-      background: linear-gradient(180deg,var(--bg), #071025 120%);
-      color:#eef2ff;
-      min-height:100vh;
-      display:flex;
-      align-items:center;
-      justify-content:center;
-      padding:28px;
-    }
-    .wrap{
-      width:100%;
-      max-width:980px;
-    }
-    header{
-      display:flex;
-      gap:16px;
-      align-items:center;
-      margin-bottom:18px;
-    }
-    .logo{
-      width:56px;height:56px;border-radius:12px;
-      background:linear-gradient(135deg,var(--accent), #4dd0e1);
-      display:flex;align-items:center;justify-content:center;
-      font-weight:700;color:#031026;font-size:18px;
-      box-shadow:0 6px 20px rgba(124,92,255,0.18);
-    }
-    h1{font-size:20px;margin:0}
-    p.lead{margin:0;color:var(--muted);font-size:13px}
-    .grid{
-      display:grid;
-      grid-template-columns: 1fr 360px;
-      gap:20px;
-      align-items:start;
-    }
-    @media (max-width:880px){
-      .grid{grid-template-columns:1fr}
+    @import url('https://fonts.googleapis.com/css2?family=Orbitron:wght@400;700&display=swap');
+
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
     }
 
-    /* Картинка */
-    .card{
-      background: linear-gradient(180deg,var(--card), rgba(255,255,255,0.02));
-      border-radius:14px;padding:18px;
-      box-shadow: 0 8px 30px rgba(2,6,23,0.6);
-      border:1px solid rgba(255,255,255,0.03);
-    }
-    .preview{
-      width:100%;
-      display:flex;
-      align-items:center;
-      justify-content:center;
-      min-height:320px;
-      border-radius:10px;
-      background:var(--glass);
-      overflow:hidden;
-      position:relative;
-    }
-    .preview img{
-      max-width:100%;
-      max-height:76vh;
-      object-fit:contain;
-      display:block;
-    }
-    .meta{
-      display:flex;
-      gap:8px;
-      align-items:center;
-      justify-content:space-between;
-      margin-top:12px;
-      flex-wrap:wrap;
-    }
-    .meta .info{color:var(--muted);font-size:13px}
-    .controls{display:flex;gap:8px;flex-wrap:wrap}
-    button, .btn {
-      background:linear-gradient(90deg,var(--accent), #5fb7ff);
-      color:#031026;border:0;padding:8px 12px;border-radius:10px;
-      cursor:pointer;font-weight:600;
-      box-shadow:0 6px 18px rgba(92,72,220,0.14);
-    }
-    .btn.ghost{
-      background:transparent;color:var(--muted);border:1px solid rgba(255,255,255,0.04);
-      box-shadow:none;font-weight:600;
-    }
-    input[type="text"]{
-      width:100%;
-      padding:10px 12px;border-radius:10px;border:1px solid rgba(255,255,255,0.04);
-      background:transparent;color:inherit;font-size:14px;
+    body {
+      font-family: 'Orbitron', sans-serif;
+      background: radial-gradient(circle at top, #0f1724, #020617);
+      color: white;
+      min-height: 100vh;
+      overflow: hidden;
+      display: flex;
+      align-items: center;
+      justify-content: center;
     }
 
-    /* Правый блок */
-    aside .card{padding:16px}
-    label{display:block;font-size:13px;color:var(--muted);margin-bottom:6px}
-    .small{font-size:13px;color:var(--muted);margin-top:8px}
-    .drop{
-      margin-top:8px;border:1px dashed rgba(255,255,255,0.04);
-      border-radius:10px;padding:14px;text-align:center;color:var(--muted);
-      background:linear-gradient(180deg, rgba(255,255,255,0.01), transparent);
+    /* Анімований фон */
+    .glow {
+      position: absolute;
+      width: 800px;
+      height: 800px;
+      background: radial-gradient(circle, rgba(59,130,246,0.25), transparent 70%);
+      animation: pulse 6s infinite ease-in-out;
+      z-index: 0;
     }
-    .actions-row{display:flex;gap:8px;margin-top:12px}
-    .note{font-size:12px;color:var(--muted);margin-top:10px}
-    footer{margin-top:14px;color:var(--muted);font-size:12px;text-align:center}
-    a.link{color:inherit;text-decoration:none;border-bottom:1px dashed rgba(255,255,255,0.03)}
+
+    @keyframes pulse {
+      0% { transform: scale(1); opacity: 0.3; }
+      50% { transform: scale(1.2); opacity: 0.6; }
+      100% { transform: scale(1); opacity: 0.3; }
+    }
+
+    /* Головна карта */
+    .card {
+      position: relative;
+      z-index: 1;
+      background: rgba(10, 15, 35, 0.9);
+      padding: 35px;
+      border-radius: 22px;
+      width: 90%;
+      max-width: 520px;
+      text-align: center;
+      box-shadow: 0 0 60px rgba(0, 153, 255, 0.35);
+      border: 1px solid rgba(0, 153, 255, 0.3);
+      animation: fadeIn 1.5s ease;
+    }
+
+    @keyframes fadeIn {
+      from { opacity: 0; transform: translateY(30px); }
+      to { opacity: 1; transform: translateY(0); }
+    }
+
+    h1 {
+      font-size: 26px;
+      margin-bottom: 10px;
+      letter-spacing: 2px;
+      color: #38bdf8;
+    }
+
+    .subtitle {
+      font-size: 13px;
+      color: #94a3b8;
+      margin-bottom: 20px;
+    }
+
+    img {
+      width: 100%;
+      border-radius: 16px;
+      border: 2px solid rgba(56, 189, 248, 0.35);
+      box-shadow: 0 0 35px rgba(56,189,248,0.35);
+      margin-bottom: 18px;
+      animation: float 5s ease-in-out infinite;
+    }
+
+    @keyframes float {
+      0% { transform: translateY(0); }
+      50% { transform: translateY(-10px); }
+      100% { transform: translateY(0); }
+    }
+
+    .prompt {
+      font-size: 12px;
+      color: #9ca3af;
+      opacity: 0.8;
+    }
+
+    .tag {
+      margin-top: 12px;
+      display: inline-block;
+      padding: 6px 14px;
+      border-radius: 20px;
+      background: linear-gradient(90deg, #0ea5e9, #6366f1);
+      font-size: 11px;
+      color: #020617;
+      box-shadow: 0 0 15px rgba(56,189,248,0.5);
+    }
+
   </style>
 </head>
 <body>
-  <div class="wrap">
-    <header>
-      <div class="logo">ШІ</div>
-      <div>
-        <h1>Картинка — ШІ</h1>
-        <p class="lead">Завантаж або встав URL картинки, додай промпт/підпис і збережи</p>
-      </div>
-    </header>
 
-    <div class="grid">
-      <!-- Ліва: Прев'ю -->
-      <main class="card">
-        <div class="preview" id="preview">
-          <!-- Початкове місце для зображення -->
-          <div id="placeholder" style="text-align:center;color:var(--muted);padding:16px;">
-            <svg width="96" height="96" viewBox="0 0 24 24" fill="none" style="opacity:0.7"><path d="M12 2v6" stroke="currentColor" stroke-width="1.2" stroke-linecap="round" stroke-linejoin="round"/><path d="M8 7a4 4 0 0 1 8 0v1" stroke="currentColor" stroke-width="1.2" stroke-linecap="round" stroke-linejoin="round"/><rect x="3" y="11" width="18" height="10" rx="2" stroke="currentColor" stroke-width="1.2"/></svg>
-            <div style="margin-top:10px">Тут з'явиться картинка</div>
-            <div style="font-size:13px;color:var(--muted);margin-top:8px">Підтримується drag & drop, завантаження та вставлення URL</div>
-          </div>
-        </div>
+  <div class="glow"></div>
 
-        <div class="meta">
-          <div class="info" id="imageInfo">Немає зображення</div>
-          <div class="controls">
-            <button class="btn" id="openBtn" disabled>Відкрити в новій вкладці</button>
-            <button class="btn ghost" id="downloadBtn" style="color:var(--muted)" disabled>Завантажити</button>
-          </div>
-        </div>
+  <div class="card">
+    <h1>AI CRYPTO ENTITY</h1>
+    <div class="subtitle">Futuristic Artificial Intelligence Project</div>
 
-        <div class="small" style="margin-top:14px">
-          <strong>Промпт / Підпис:</strong>
-          <div id="captionText" style="margin-top:8px;color:var(--muted)">—</div>
-        </div>
-      </main>
+    <!-- 🔥 ТУТ МОЖНА ЗАМІНИТИ НА РЕАЛЬНУ ШІ-КАРТИНКУ -->
+    <img src="https://images.unsplash.com/photo-1624996752380-8ec242e0f85d" alt="AI Crypto Image">
 
-      <!-- ПРАВА: Керування -->
-      <aside>
-        <div class="card">
-          <label for="urlInput">Вставити URL картинки</label>
-          <input id="urlInput" type="text" placeholder="https://example.com/ai-image.jpg" />
-          <div class="actions-row">
-            <button class="btn" id="loadUrlBtn">Завантажити</button>
-            <button class="btn ghost" id="clearBtn">Очистити</button>
-          </div>
-
-          <div style="margin-top:12px">
-            <label>Або завантажити файл</label>
-            <div class="drop" id="dropZone">
-              Перетягни фото сюди або <input type="file" id="fileInput" accept="image/*" style="display:inline-block;margin-left:6px" />
-            </div>
-            <div class="note">Підтримувані формати: JPG, PNG, WebP. Розмір: бажано до 5 МБ.</div>
-          </div>
-
-          <div style="margin-top:12px">
-            <label for="prompt">Промпт / Підпис (наприклад: "портрет жінки у стилі кіберпанк")</label>
-            <input id="prompt" type="text" placeholder="Опис картинки чи промпт" />
-            <div class="actions-row" style="margin-top:10px">
-              <button class="btn" id="applyCaption">Додати підпис</button>
-              <button class="btn ghost" id="exampleBtn">Приклад промпту</button>
-            </div>
-          </div>
-
-          <div class="small" style="margin-top:14px">
-            Порада: якщо у тебе є AI-генератор (DALL·E, Midjourney, Stable Diffusion), встав сюди URL згенерованої картинки або завантаж файл.
-          </div>
-        </div>
-      </aside>
+    <div class="prompt">
+      Prompt: "Futuristic AI crypto entity, neon energy, cyberpunk, hyper detailed, 4k"
     </div>
 
-    <footer>
-      <div>© Твій сайт — Картинка ШІ · Зроблено швидко</div>
-    </footer>
+    <div class="tag">GENESIS MODE</div>
   </div>
 
-  <script>
-    // DOM refs
-    const preview = document.getElementById('preview');
-    const placeholder = document.getElementById('placeholder');
-    const urlInput = document.getElementById('urlInput');
-    const loadUrlBtn = document.getElementById('loadUrlBtn');
-    const fileInput = document.getElementById('fileInput');
-    const dropZone = document.getElementById('dropZone');
-    const openBtn = document.getElementById('openBtn');
-    const downloadBtn = document.getElementById('downloadBtn');
-    const imageInfo = document.getElementById('imageInfo');
-    const captionText = document.getElementById('captionText');
-    const promptInput = document.getElementById('prompt');
-    const applyCaption = document.getElementById('applyCaption');
-    const clearBtn = document.getElementById('clearBtn');
-    const exampleBtn = document.getElementById('exampleBtn');
-
-    let currentImageURL = null;
-
-    function showImage(url, filename){
-      // видаляємо плейсхолдер
-      if(placeholder) placeholder.style.display = 'none';
-      // очищаємо preview
-      preview.innerHTML = '';
-      const img = document.createElement('img');
-      img.src = url;
-      img.alt = filename || 'Картинка ШІ';
-      img.loading = 'lazy';
-      img.addEventListener('error', ()=>{
-        showError('Не вдалося завантажити зображення.');
-      });
-      preview.appendChild(img);
-
-      currentImageURL = url;
-      imageInfo.textContent = filename ? filename : (new URL(url)).pathname.split('/').pop() || 'Картинка з URL';
-      openBtn.disabled = false;
-      downloadBtn.disabled = false;
-      downloadBtn.classList.remove('ghost');
-    }
-
-    function showError(text){
-      preview.innerHTML = `<div style="text-align:center;color:#ffccd5;padding:20px">${text}</div>`;
-      imageInfo.textContent = 'Помилка';
-      openBtn.disabled = true;
-      downloadBtn.disabled = true;
-    }
-
-    // Завантаження з URL
-    loadUrlBtn.addEventListener('click', ()=>{
-      const url = urlInput.value.trim();
-      if(!url) return showError('Вставте валідний URL.');
-      // простий чек
-      if(!/^https?:\/\//i.test(url)) return showError('URL повинен починатися з http:// або https://');
-      showImage(url);
-    });
-
-    // Файл локальний
-    fileInput.addEventListener('change', (e)=>{
-      const f = e.target.files && e.target.files[0];
-      if(!f) return;
-      if(!f.type.startsWith('image/')) return showError('Оберіть файл зображення.');
-      const url = URL.createObjectURL(f);
-      showImage(url, f.name);
-    });
-
-    // Drag & drop
-    ['dragenter','dragover'].forEach(ev => {
-      dropZone.addEventListener(ev, (e)=>{ e.preventDefault(); dropZone.style.borderColor = 'rgba(124,92,255,0.6)'; });
-    });
-    ['dragleave','drop'].forEach(ev => {
-      dropZone.addEventListener(ev, (e)=>{ e.preventDefault(); dropZone.style.borderColor = ''; });
-    });
-    dropZone.addEventListener('drop', (e)=>{
-      const f = e.dataTransfer.files && e.dataTransfer.files[0];
-      if(!f) return;
-      if(!f.type.startsWith('image/')) return showError('Оберіть файл зображення.');
-      const url = URL.createObjectURL(f);
-      showImage(url, f.name);
-    });
-
-    // Відкрити в новій вкладці
-    openBtn.addEventListener('click', ()=>{
-      if(!currentImageURL) return;
-      window.open(currentImageURL, '_blank', 'noopener');
-    });
-
-    // Завантажити
-    downloadBtn.addEventListener('click', ()=>{
-      if(!currentImageURL) return;
-      const a = document.createElement('a');
-      a.href = currentImageURL;
-      // намагаємось встановити ім'я
-      let name = (imageInfo.textContent && imageInfo.textContent !== 'Немає зображення') ? imageInfo.textContent : 'ai-image';
-      a.download = name;
-      document.body.appendChild(a);
-      a.click();
-      a.remove();
-    });
-
-    // Додати підпис
-    applyCaption.addEventListener('click', ()=>{
-      const txt = promptInput.value.trim();
-      captionText.textContent = txt || '—';
-    });
-
-    // Очистити
-    clearBtn.addEventListener('click', ()=>{
-      currentImageURL = null;
-      imageInfo.textContent = 'Немає зображення';
-      captionText.textContent = '—';
-      urlInput.value = '';
-      promptInput.value = '';
-      preview.innerHTML = '';
-      if(placeholder) placeholder.style.display = 'block';
-      preview.appendChild(placeholder);
-      openBtn.disabled = true;
-      downloadBtn.disabled = true;
-    });
-
-    // Приклад промпту
-    exampleBtn.addEventListener('click', ()=>{
-      promptInput.value = 'Портрет жінки у стилі кіберпанк, неон, детально, 4k';
-    });
-
-    // Підтримка вставки (paste) — корисно, коли скопійовано картинку в буфер
-    window.addEventListener('paste', (e)=>{
-      const items = e.clipboardData && e.clipboardData.items;
-      if(!items) return;
-      for(let it of items){
-        if(it.type && it.type.startsWith('image/')){
-          const blob = it.getAsFile();
-          const url = URL.createObjectURL(blob);
-          showImage(url, 'pasted-image.png');
-          return;
-        }
-      }
-    });
-  </script>
 </body>
 </html>
