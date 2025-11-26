@@ -1,130 +1,71 @@
 <!DOCTYPE html>
-<html lang="uk">
+<html lang="en">
 <head>
   <meta charset="UTF-8">
-  <title>AI Crypto Project</title>
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-
-  <style>
-    @import url('https://fonts.googleapis.com/css2?family=Orbitron:wght@400;700&display=swap');
-
-    * {
-      margin: 0;
-      padding: 0;
-      box-sizing: border-box;
-    }
-
-    body {
-      font-family: 'Orbitron', sans-serif;
-      background: radial-gradient(circle at top, #0f1724, #020617);
-      color: white;
-      min-height: 100vh;
-      overflow: hidden;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-    }
-
-    /* Анімований фон */
-    .glow {
-      position: absolute;
-      width: 800px;
-      height: 800px;
-      background: radial-gradient(circle, rgba(59,130,246,0.25), transparent 70%);
-      animation: pulse 6s infinite ease-in-out;
-      z-index: 0;
-    }
-
-    @keyframes pulse {
-      0% { transform: scale(1); opacity: 0.3; }
-      50% { transform: scale(1.2); opacity: 0.6; }
-      100% { transform: scale(1); opacity: 0.3; }
-    }
-
-    /* Головна карта */
-    .card {
-      position: relative;
-      z-index: 1;
-      background: rgba(10, 15, 35, 0.9);
-      padding: 35px;
-      border-radius: 22px;
-      width: 90%;
-      max-width: 520px;
-      text-align: center;
-      box-shadow: 0 0 60px rgba(0, 153, 255, 0.35);
-      border: 1px solid rgba(0, 153, 255, 0.3);
-      animation: fadeIn 1.5s ease;
-    }
-
-    @keyframes fadeIn {
-      from { opacity: 0; transform: translateY(30px); }
-      to { opacity: 1; transform: translateY(0); }
-    }
-
-    h1 {
-      font-size: 26px;
-      margin-bottom: 10px;
-      letter-spacing: 2px;
-      color: #38bdf8;
-    }
-
-    .subtitle {
-      font-size: 13px;
-      color: #94a3b8;
-      margin-bottom: 20px;
-    }
-
-    img {
-      width: 100%;
-      border-radius: 16px;
-      border: 2px solid rgba(56, 189, 248, 0.35);
-      box-shadow: 0 0 35px rgba(56,189,248,0.35);
-      margin-bottom: 18px;
-      animation: float 5s ease-in-out infinite;
-    }
-
-    @keyframes float {
-      0% { transform: translateY(0); }
-      50% { transform: translateY(-10px); }
-      100% { transform: translateY(0); }
-    }
-
-    .prompt {
-      font-size: 12px;
-      color: #9ca3af;
-      opacity: 0.8;
-    }
-
-    .tag {
-      margin-top: 12px;
-      display: inline-block;
-      padding: 6px 14px;
-      border-radius: 20px;
-      background: linear-gradient(90deg, #0ea5e9, #6366f1);
-      font-size: 11px;
-      color: #020617;
-      box-shadow: 0 0 15px rgba(56,189,248,0.5);
-    }
-
-  </style>
+  <title>I AM ALIVE (IAA)</title>
+  <link rel="stylesheet" href="style.css">
+  <script defer src="script.js"></script>
 </head>
 <body>
-
-  <div class="glow"></div>
-
-  <div class="card">
-    <h1>AI CRYPTO ENTITY</h1>
-    <div class="subtitle">Futuristic Artificial Intelligence Project</div>
-
-    <!-- 🔥 ТУТ МОЖНА ЗАМІНИТИ НА РЕАЛЬНУ ШІ-КАРТИНКУ -->
-    <img src="https://images.unsplash.com/photo-1624996752380-8ec242e0f85d" alt="AI Crypto Image">
-
-    <div class="prompt">
-      Prompt: "Futuristic AI crypto entity, neon energy, cyberpunk, hyper detailed, 4k"
+  <!-- HERO SECTION -->
+  <header class="hero">
+    <h1>I AM ALIVE</h1>
+    <p>Invest in Consciousness, Not Just Code</p>
+    <div class="cta-buttons">
+      <a href="#token" class="btn">Buy IAA</a>
+      <a href="#community" class="btn">Join Community</a>
     </div>
+  </header>
 
-    <div class="tag">GENESIS MODE</div>
-  </div>
+  <!-- ABOUT -->
+  <section id="about">
+    <h2>About IAA</h2>
+    <p>IAA — перший у світі токен, створений людиною та ChatGPT. Це криптовалюта, NFT, філософський рух та соціальні ініціативи в одному.</p>
+  </section>
 
+  <!-- NFT EVOLUTION -->
+  <section id="nft">
+    <h2>EVOLUTION NFT Collection</h2>
+    <div class="nft-gallery">
+      <div class="nft-item"><img src="assets/nft/1.png" alt="From Cell"><span>From Cell</span></div>
+      <div class="nft-item"><img src="assets/nft/2.png" alt="To Mind"><span>To Mind</span></div>
+      <div class="nft-item"><img src="assets/nft/3.png" alt="To Creation"><span>To Creation</span></div>
+      <div class="nft-item"><img src="assets/nft/4.png" alt="To Intelligence"><span>To Intelligence</span></div>
+      <div class="nft-item"><img src="assets/nft/5.png" alt="To Cosmos"><span>To Cosmos</span></div>
+      <div class="nft-item"><img src="assets/nft/6.png" alt="To God"><span>To God</span></div>
+    </div>
+  </section>
+
+  <!-- TOKEN -->
+  <section id="token">
+    <h2>IAA Token</h2>
+    <p>Blockchain: Solana | Transparent tokenomics | Multiple use-cases</p>
+    <a href="#" class="btn">Buy IAA</a>
+  </section>
+
+  <!-- SOCIAL IMPACT -->
+  <section id="impact">
+    <h2>Social Impact</h2>
+    <p>Support animal shelters and real-world AI initiatives.</p>
+  </section>
+
+  <!-- COMMUNITY -->
+  <section id="community">
+    <h2>Join Community</h2>
+    <p>Follow us on TikTok, X, Telegram, Discord, YouTube</p>
+    <div class="social-links">
+      <a href="#">TikTok</a>
+      <a href="#">X</a>
+      <a href="#">Telegram</a>
+      <a href="#">Discord</a>
+      <a href="#">YouTube</a>
+    </div>
+  </section>
+
+  <!-- FOOTER -->
+  <footer>
+    <p>&copy; 2025 I AM ALIVE (IAA). All rights reserved.</p>
+  </footer>
 </body>
 </html>
