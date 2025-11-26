@@ -161,3 +161,47 @@ body::after {
   0% { background-position: 0 0; }
   100% { background-position: 1000px 1000px; }
 }
+
+/* INTRO ANIMATION */
+#intro-animation {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100vh;
+  background: radial-gradient(circle at center, #1b0032, #0d0d0d);
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  color: #00f0ff;
+  z-index: 1000;
+  text-align: center;
+  opacity: 1;
+  transform: scale(1);
+  transition: all 2s ease-in-out;
+}
+
+#intro-animation h1 {
+  font-size: 5rem;
+  text-shadow: 0 0 20px #00f0ff, 0 0 40px #00f0ff;
+  animation: pulse 2s infinite;
+}
+
+#intro-animation p {
+  font-size: 1.8rem;
+  margin-top: 20px;
+  animation: fadeIn 2s forwards;
+}
+
+/* ANIMATION KEYFRAMES */
+@keyframes pulse {
+  0%, 100% { transform: scale(1); text-shadow: 0 0 20px #00f0ff, 0 0 40px #00f0ff; }
+  50% { transform: scale(1.05); text-shadow: 0 0 40px #00f0ff, 0 0 80px #00f0ff; }
+}
+
+@keyframes fadeIn {
+  from { opacity: 0; }
+  to { opacity: 1; }
+}
+
